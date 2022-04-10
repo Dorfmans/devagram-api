@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "jsonwebtoken": "^8.5.1",
     "md5": "^2.3.0",
     "mongoose": "^6.2.10",
     "next": "12.1.4",
@@ -16,6 +17,7 @@
     "react-dom": "18.0.0"
   },
   "devDependencies": {
+    "@types/jsonwebtoken": "^8.5.8",
     "@types/md5": "^2.3.2",
     "@types/node": "17.0.23",
     "@types/react": "18.0.1",
