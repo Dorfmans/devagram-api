@@ -35,7 +35,7 @@ const cosmicImageUploader =async (req: any) => {
             buffer: req.file.buffer
         };
         
-        if(req.url && req.url.includes('feed')){
+        if(req.url && req.url.includes('post')){
             return await feedBucket.addMedia({media: media_object});
         }else{
             return await avatarBucket.addMedia({media: media_object});
