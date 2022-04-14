@@ -44,6 +44,9 @@ const handler = nc()
 
         await postModels.create(post);
 
+        user.posts++
+        await userModels.findByIdAndUpdate({_id: user._id}, user);
+
         return res.status(200).json({message: 'Posted'});
 
         }catch(e){

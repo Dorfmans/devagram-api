@@ -4,7 +4,7 @@ import {tokenAuth} from '../../middlewares/tokenAuth';
 import { dbConnection } from "../../middlewares/dbConnection";
 import { userModels } from '../../models/userModels';
 import { postModels } from "../../models/postModels";
-import user from "./user";
+
 // import nc from 'next-connect';
 
 export const likeEndpoint = async (req: NextApiRequest, res: NextApiResponse<defaultMessage>) => {
