@@ -5,7 +5,7 @@ const postSchema = new Schema({
     image: {type: String, required: true},
     description: {type: String, required: true},
     date: {type: Date, required: true},
-    coments: {type: Array, required: true, default: []},
+    comments: {type: Array, required: true, default: []},
     likes: {type: Array, required: true, default: []}
 });
 
