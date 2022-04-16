@@ -3,6 +3,7 @@ import type { defaultMessage } from "../../types/defaultMessage";
 import {tokenAuth} from '../../middlewares/tokenAuth';
 import { dbConnection } from "../../middlewares/dbConnection";
 import { userModels } from '../../models/userModels';
+import { corsPolicy } from "../../middlewares/corsPolicy";
 // import nc from 'next-connect';
 
 const searchEndpoint = async (req: NextApiRequest, res: NextApiResponse<defaultMessage | any >) => {
@@ -46,4 +47,4 @@ const searchEndpoint = async (req: NextApiRequest, res: NextApiResponse<defaultM
     }
 }
 
-export default tokenAuth(dbConnection(searchEndpoint));
+export default corsPolicy(tokenAuth(dbConnection(searchEndpoint)));

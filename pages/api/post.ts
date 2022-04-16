@@ -6,6 +6,7 @@ import { tokenAuth } from "../../middlewares/tokenAuth";
 import { postModels } from "../../models/postModels";
 import { userModels } from "../../models/userModels";
 import nc from 'next-connect';
+import { corsPolicy } from "../../middlewares/corsPolicy";
 
 
 const handler = nc()
@@ -61,4 +62,4 @@ export const config = {
     }
 }
 
-export default tokenAuth(dbConnection(handler));
+export default corsPolicy(tokenAuth(dbConnection(handler)));

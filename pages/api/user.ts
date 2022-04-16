@@ -5,6 +5,7 @@ import { dbConnection } from "../../middlewares/dbConnection";
 import { userModels } from '../../models/userModels';
 import nc from 'next-connect';
 import { cosmicImageUploader, upload } from '../../services/cosmicImageUploader';
+import { corsPolicy } from "../../middlewares/corsPolicy";
 
 const handler = nc()
     .use(upload.single('file'))
@@ -58,4 +59,4 @@ export const config = {
 }
 
 
-export default  tokenAuth(dbConnection(handler));
+export default  corsPolicy(tokenAuth(dbConnection(handler)));

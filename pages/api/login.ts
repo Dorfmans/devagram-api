@@ -6,6 +6,7 @@ import { userModels } from '../../models/userModels';
 import md5 from "md5";
 import jwt from 'jsonwebtoken';
 import {loginTypes} from '../../types/loginTypes'
+import { corsPolicy } from "../../middlewares/corsPolicy";
 
 
 const endpointLogin = async (
@@ -40,4 +41,4 @@ const endpointLogin = async (
     return res.status(405).json({error: 'Method invalid'});
 } 
 
-export default dbConnection(endpointLogin);
+export default corsPolicy(dbConnection(endpointLogin));

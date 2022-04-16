@@ -4,6 +4,7 @@ import {tokenAuth} from '../../middlewares/tokenAuth';
 import { dbConnection } from "../../middlewares/dbConnection";
 import { userModels } from "../../models/userModels";
 import { followingModels } from "../../models/followingModels";
+import { corsPolicy } from "../../middlewares/corsPolicy";
 
 
 
@@ -65,4 +66,4 @@ export const followingEndpoint = async (req: NextApiRequest, res: NextApiRespons
     }
 }
 
-export default tokenAuth(dbConnection(followingEndpoint));
+export default corsPolicy(tokenAuth(dbConnection(followingEndpoint)));

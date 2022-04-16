@@ -5,6 +5,7 @@ import { dbConnection } from "../../middlewares/dbConnection";
 import { postModels } from '../../models/postModels'
 import { userModels } from '../../models/userModels'
 import { followingModels } from "../../models/followingModels";
+import { corsPolicy } from "../../middlewares/corsPolicy";
 
 const feedEndpoint = async (req: NextApiRequest, res: NextApiResponse<defaultMessage | any>) => {
     
@@ -60,4 +61,4 @@ const feedEndpoint = async (req: NextApiRequest, res: NextApiResponse<defaultMes
     return res.status(405).json({error: 'Cannot get feed'});
 }
 
-export default tokenAuth(dbConnection(feedEndpoint));
+export default corsPolicy(tokenAuth(dbConnection(feedEndpoint)));

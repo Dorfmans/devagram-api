@@ -4,6 +4,7 @@ import {tokenAuth} from '../../middlewares/tokenAuth';
 import { dbConnection } from "../../middlewares/dbConnection";
 import { postModels } from '../../models/postModels'
 import { userModels } from '../../models/userModels'
+import { corsPolicy } from "../../middlewares/corsPolicy";
 
 export const commentsEndpoint = async (req: NextApiRequest, res: NextApiResponse<defaultMessage>) => {
     try{
@@ -45,4 +46,4 @@ export const commentsEndpoint = async (req: NextApiRequest, res: NextApiResponse
     }
 }
 
-export default tokenAuth(dbConnection(commentsEndpoint));
+export default corsPolicy(tokenAuth(dbConnection(commentsEndpoint)));
