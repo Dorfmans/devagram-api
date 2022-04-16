@@ -8,7 +8,7 @@ async (req: NextApiRequest, res: NextApiResponse<defaultMessage>) => {
 
         await NextCors(req, res, {
             origin: '*',
-            methods: ['GET', 'POST', 'PUT'],
+            methods: ['GET', 'POST', 'PUT', 'DELETE'],
             optionsSuccessStatus: 200
         });
 
