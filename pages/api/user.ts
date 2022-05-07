@@ -46,7 +46,7 @@ const handler = nc()
             const user = await userModels.findById(userId);
             console.log('user', user)
             user.password = null;
-            return res.status(200).json({user});
+            return res.status(200).json(user);
         }catch(e){
             console.log(e);
         }
