@@ -44,6 +44,7 @@ const handler = nc()
         try{
             const { userId } = req?.query;
             const user = await userModels.findById(userId);
+            console.log('user', user)
             user.password = null;
             return res.status(200).json({user});
         }catch(e){
