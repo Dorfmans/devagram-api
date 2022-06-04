@@ -20,7 +20,7 @@ const feedEndpoint = async (req: NextApiRequest, res: NextApiResponse<defaultMes
                 }
 
                 const post = await postModels
-                .find({user: user._id})
+                .find({userId: user._id})
                 .sort({date: -1});
 
                 return res.status(200).json({post});
