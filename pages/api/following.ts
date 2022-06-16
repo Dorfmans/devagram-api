@@ -7,24 +7,23 @@ import { followingModels } from "../../models/followingModels";
 import { corsPolicy } from "../../middlewares/corsPolicy";
 
 
-
-export const followingEndpoint = async (req: NextApiRequest, res: NextApiResponse<defaultMessage>) => {
+const followingEndpoint = async (req: NextApiRequest, res: NextApiResponse<defaultMessage>) => {
     try{
         if(req.method === 'PUT'){
 
             const {userId, id} = req?.query;
             const loggedUser = await userModels.findById(userId);
-            const followingUser = await userModels.findById(id);
-
             if(!loggedUser){
                 return res.status(400).json({error: 'Logged User not found'});
             }
-
+            
+            
+            const followingUser = await userModels.findById(id);
             if(!followingUser){
                 return res.status(400).json({error: 'Following User not found'});
             }
 
-            const isFollowing = await followingModels.find({userId: loggedUser._id, followingUserId: followingUser._id});
+            const isFollowing = await followingModels.find({userIds: loggedUser._id, followingUserId: followingUser._id});
             if(isFollowing && isFollowing.length > 0){
 
                 isFollowing.forEach(async (e: any) => await followingModels.findByIdAndDelete({_id: e._id}));
@@ -40,7 +39,7 @@ export const followingEndpoint = async (req: NextApiRequest, res: NextApiRespons
 
             }else{
                 const following = {
-                    userId: loggedUser._id,
+                    userIds: loggedUser._id,
                     followingUserId: followingUser._id
                 };
 

@@ -23,13 +23,13 @@ export const commentsEndpoint = async (req: NextApiRequest, res: NextApiResponse
                 return res.status(400).json({error: 'Post not found'});
             }
             
-            if(!req.body || !req.body.comments){
+            if(!req.body || !req.body.comments || req.body.comments.length < 2){
                 return res.status(400).json({error: 'Invalid Comment'});
             }
 
             const comment = {
                 userId: loggedUser._id,
-                name: loggedUser.user,
+                name: loggedUser.name,
                 comment: req.body.comments
             };
 

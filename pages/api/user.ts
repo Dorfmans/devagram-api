@@ -20,7 +20,7 @@ const handler = nc()
 
             const { name } = req.body;
             if(name && name.length > 2){
-                user.user = name;
+                user.name = name;
             }
 
             const {file} = req;

@@ -30,7 +30,7 @@ const endpointLogin = async (
             const token = jwt.sign({_id : hasUser._id}, JWT_KEY)
             
             return res.status(200).json({
-                user: hasUser.user,
+                name: hasUser.name,
                 email: hasUser.email,
                 token});
         }

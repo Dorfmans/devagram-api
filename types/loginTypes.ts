@@ -1,5 +1,5 @@
 export type loginTypes = {
-    user: string,
+    name: string,
     email: string,
     token: string
 }

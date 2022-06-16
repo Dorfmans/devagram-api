@@ -16,7 +16,7 @@ const handler = nc()
 
         const user = req.body as signUpTypes;
 
-        if(!user.user || user.user.length < 2)
+        if(!user.name || user.name.length < 2)
         {return res.status(400).json({error: 'Invalid Username'})};
 
         if(!user.email 
@@ -32,7 +32,7 @@ const handler = nc()
 
 
         const savingUser = {
-        user: user.user,
+        user: user.name,
         email: user.email,
         password: md5(user.password),
         avatar: image?.media?.url

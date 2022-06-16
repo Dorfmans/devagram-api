@@ -31,7 +31,7 @@ const feedEndpoint = async (req: NextApiRequest, res: NextApiResponse<defaultMes
                     return res.status(400).json({error: 'User not found'});
                 }
                 const followers = await followingModels.find({userId: loggedUser._id});
-                const followersId = followers.map(followers => followers.followingUserId);
+                const followersId = followers.map(f => f.followingUserId);
                 const posts = await postModels
                 .find({
                     $or: [    
@@ -41,12 +41,12 @@ const feedEndpoint = async (req: NextApiRequest, res: NextApiResponse<defaultMes
 
                 const result = [];
                 for (const post of posts){
-                    const postUser = await userModels.findById(post.user);
+                    const postUser = await userModels.findById(post.idUser);
                     if(postUser){
                         const finalPost =
                         {...post._doc,
                             user : {
-                                user: postUser.user,
+                                name: postUser.name,
                                 avatar: postUser.avatar
                         }};
                         result.push(finalPost)
@@ -55,10 +55,11 @@ const feedEndpoint = async (req: NextApiRequest, res: NextApiResponse<defaultMes
                 return res.status(200).json(result);
             }
         }
+        return res.status(405).json({error: 'Invalid Method'});
     }catch(e){
         console.log(e);
     }
-    return res.status(405).json({error: 'Cannot get feed'});
+        return res.status(400).json({error: 'Cannot get feed'})
 }
 
 export default corsPolicy(tokenAuth(dbConnection(feedEndpoint)));

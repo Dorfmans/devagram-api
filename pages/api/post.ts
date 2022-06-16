@@ -37,17 +37,17 @@ const handler = nc()
 
         const image = await cosmicImageUploader(req);
         const post = {
-            user: user._id,
+            idUser: user._id,
             description,
             image: image.media.url,
             date: new Date()
         }
 
-        await postModels.create(post);
-
+        
         user.posts++
         await userModels.findByIdAndUpdate({_id: user._id}, user);
-
+        
+        await postModels.create(post);
         return res.status(200).json({message: 'Posted'});
 
         }catch(e){
