@@ -1,7 +1,7 @@
 import mongoose, {Schema} from "mongoose";
 
 const postSchema = new Schema({
-    user: {type: String, required: true},
+    idUser: {type: String, required: true},
     image: {type: String, required: true},
     description: {type: String, required: true},
     date: {type: Date, required: true},

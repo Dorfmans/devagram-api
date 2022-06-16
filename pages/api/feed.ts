@@ -19,11 +19,11 @@ const feedEndpoint = async (req: NextApiRequest, res: NextApiResponse<defaultMes
                     return res.status(400).json({error: 'User not found'});
                 }
 
-                const post = await postModels
-                .find({user: user._id})
+                const posts = await postModels
+                .find({idUser: user._id})
                 .sort({date: -1});
 
-                return res.status(200).json({post});
+                return res.status(200).json({posts});
             }else{
                 const {userId} = req.query;
                 const loggedUser = await userModels.findById(userId);
@@ -35,8 +35,8 @@ const feedEndpoint = async (req: NextApiRequest, res: NextApiResponse<defaultMes
                 const posts = await postModels
                 .find({
                     $or: [    
-                        {user: loggedUser._id},
-                        {user: followersId }]})
+                        {idUser: loggedUser._id},
+                        {idUser: followersId }]})
                 .sort({date: -1});
 
                 const result = [];
