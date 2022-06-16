@@ -32,7 +32,7 @@ const handler = nc()
 
 
         const savingUser = {
-        user: user.name,
+        name: user.name,
         email: user.email,
         password: md5(user.password),
         avatar: image?.media?.url
