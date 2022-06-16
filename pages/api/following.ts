@@ -35,7 +35,7 @@ const followingEndpoint = async (req: NextApiRequest, res: NextApiResponse<defau
                 await userModels.findByIdAndUpdate({_id: followingUser._id}, followingUser);
 
 
-                res.status(200).json({message: 'Unfollowing!'})
+                return res.status(200).json({message: 'Unfollowing!'})
 
             }else{
                 const following = {
