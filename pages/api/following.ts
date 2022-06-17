@@ -28,7 +28,7 @@ const followingEndpoint = async (req: NextApiRequest, res: NextApiResponse<defau
 
                 isFollowing.forEach(async (e: any) => await followingModels.findByIdAndDelete({_id: e._id}));
 
-                loggedUser.followings--;
+                loggedUser.following--;
                 await userModels.findByIdAndUpdate({_id: loggedUser._id}, loggedUser);
 
                 followingUser.followers--;
@@ -45,7 +45,7 @@ const followingEndpoint = async (req: NextApiRequest, res: NextApiResponse<defau
 
             await followingModels.create(following);
 
-            loggedUser.followings++;
+            loggedUser.following++;
             await userModels.findByIdAndUpdate({_id: loggedUser._id}, loggedUser);
 
             followingUser.followers++;
