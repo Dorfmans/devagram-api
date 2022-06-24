@@ -19,11 +19,11 @@ const feedEndpoint = async (req: NextApiRequest, res: NextApiResponse<defaultMes
                     return res.status(400).json({error: 'User not found'});
                 }
 
-                const posts = await postModels
+                const posts: any = await postModels
                 .find({idUser: user._id})
                 .sort({date: -1});
 
-                return res.status(200).json({posts});
+                return res.status(200).json(posts);
             }else{
                 const {userId} = req.query;
                 const loggedUser = await userModels.findById(userId);
